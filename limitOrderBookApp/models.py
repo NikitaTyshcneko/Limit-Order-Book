@@ -20,14 +20,14 @@ class Order(models.Model):
     ]
 
     user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
-    stock_name = models.ForeignKey(Stock, null=False, on_delete=models.CASCADE)
+    stock_short_name = models.ForeignKey(Stock, null=False, on_delete=models.CASCADE)
     order_type = models.CharField(max_length=4, null=False, choices=ORDER_CHOICES)
     price = models.DecimalField(decimal_places=2, max_digits=10, null=False)
     quantity = models.IntegerField(null=False)
     create_at = models.DateTimeField(auto_now_add=True, null=False)
 
     def __str__(self):
-        return f'{self.user} - {self.stock_name} - {self.order_type}'
+        return f'{self.user} - {self.stock_short_name} - {self.order_type}'
 
 
 class Transactions(models.Model):
