@@ -1,13 +1,20 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
-from limitOrderBookApp.api.serializer import OrderSerializer
-from limitOrderBookApp.models import Stock
+from limitOrderBookApp.api.serializer import OrderSerializer, StockSerializer, TransactionSerializer
+from limitOrderBookApp.models import Stock, Order, Transaction
 
 
 # Create your views here.
 class StockView(ModelViewSet):
-    queryset = Stock.objects.get()
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer
+
+
+class OrderView(ModelViewSet):
+    queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+
+class TransactionView(ModelViewSet):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer

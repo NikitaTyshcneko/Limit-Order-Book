@@ -1,27 +1,27 @@
 from rest_framework import serializers
 
-from limitOrderBookApp.models import Stock, Order, Transactions
+from limitOrderBookApp.models import Stock, Order, Transaction
 
 
-class StockSerializer (serializers.ModelSerializer):
+class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
-        field = ['id', 'stock_name', 'stock_short_name', 'price']
+        fields = ['id', 'stock_name', 'stock_short_name', 'price']
 
 
 class OrderSerializer (serializers.ModelSerializer):
     user = serializers.StringRelatedField()
-    stock_short_name = serializers.StringRelatedField()
+    stock_short_name = serializers.SlugRelatedField(slug_field='stock_short_name', queryset=Stock.objects.all())
 
     class Meta:
         model = Order
-        field = ['id', 'user', 'stock_short_name', 'order_type', 'price', 'quantity', 'create_at']
+        fields = ['id', 'user', 'stock_short_name', 'order_type', 'price', 'quantity', 'create_at']
 
 
 class TransactionSerializer (serializers.ModelSerializer):
     order = serializers.StringRelatedField()
 
     class Meta:
-        model = Transactions
-        field = ['id', 'order', 'total_price', 'quantity', 'create_at']
+        model = Transaction
+        fields = ['id', 'order', 'total_price', 'quantity', 'create_at']
 

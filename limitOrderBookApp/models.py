@@ -30,7 +30,7 @@ class Order(models.Model):
         return f'{self.user} - {self.stock_short_name} - {self.order_type}'
 
 
-class Transactions(models.Model):
+class Transaction(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     total_price = models.DecimalField(decimal_places=2, max_digits=10, null=False)
     quantity = models.IntegerField(null=False)
