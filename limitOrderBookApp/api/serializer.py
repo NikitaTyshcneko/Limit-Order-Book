@@ -23,5 +23,5 @@ class TransactionSerializer (serializers.ModelSerializer):
 
     class Meta:
         model = Transaction
-        fields = ['id', 'order', 'total_price', 'quantity', 'create_at']
+        fields = '__all__'
 

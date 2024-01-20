@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from limitOrderBookApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', views.register_request),
+    path('login/', views.login_request),
+    path('logout/', views.logout_request),
     path('limit-order-book/', include('limitOrderBookApp.urls')),
 ]
