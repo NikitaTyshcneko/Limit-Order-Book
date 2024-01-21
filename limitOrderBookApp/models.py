@@ -25,11 +25,17 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     stock = models.ForeignKey(Stock, null=False, on_delete=models.CASCADE)
     order_type = models.CharField(max_length=4, null=False, choices=ORDER_TYPE)
-    order_status = models.CharField(max_length=5, null=False, choices=ORDER_STATUS)
+    order_status = models.CharField(max_length=5, null=False, default='open')
     price = models.DecimalField(decimal_places=2, max_digits=10, null=False)
     quantity = models.IntegerField(null=False)
-    current_quantity = models.IntegerField(default=0)
+    current_quantity = models.IntegerField()
     create_at = models.DateTimeField(auto_now_add=True, null=False)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.current_quantity = self.quantity
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.user}'

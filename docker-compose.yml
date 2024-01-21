@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  limit-book-order:
+    container_name: limit-bookOrderContainer
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+  db:
+    container_name: db_for_limitBookOrder
+    restart: always
+    image: postgres
+    environment:
+      - POSTGRES_DB=${DBNAME}
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - my-datavolume:/var/lib/postgresql/data
+    env_file:
+      - .env
+volumes:
+  my-datavolume:
+  cache:
+

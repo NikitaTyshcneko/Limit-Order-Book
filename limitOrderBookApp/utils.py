@@ -15,7 +15,6 @@ def match_order(order: Order):
     connect_order_with_matching_orders(order, matching_orders, order_type)
 
 
-
 def connect_order_with_matching_orders(order: Order, matching_orders: QuerySet, order_type: str):
     for matching_order in matching_orders:
         if order_type == 'buy' and order.current_quantity <= matching_order.current_quantity:
