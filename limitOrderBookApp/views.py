@@ -57,11 +57,20 @@ class StockView(ModelViewSet):
 class OrderView(ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
-    queryset = Order.objects.all()
 
-
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
+        quantity = serializer.validated_data.get('quantity', 0)
+        price = serializer.validated_data.get('price', 0)
+
+        if quantity <= 0:
+            raise ValidationError("Quantity must be greater than 0.")
+
+        if price <= 0:
+            raise ValidationError("Price must be greater than 0.")
+
         order = serializer.save(user=self.request.user)
         match_order(order)
 
