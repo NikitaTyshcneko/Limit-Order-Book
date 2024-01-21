@@ -11,6 +11,8 @@ from django.shortcuts import render, redirect
 from rest_framework.permissions import IsAuthenticated
 from django.core.exceptions import ValidationError
 
+from limitOrderBookApp.utils import match_order
+
 
 def register_request(request):
     if request.method == "POST":
@@ -35,7 +37,7 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('/limit-order-book/api/stocks/')
+                return redirect('/limit-order-book/api/orders/')
     form = AuthenticationForm()
     return render(request, 'login.html', {'login_form': form})
 
@@ -55,12 +57,13 @@ class StockView(ModelViewSet):
 class OrderView(ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
+    queryset = Order.objects.all()
 
-    def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
+
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        order = serializer.save(user=self.request.user)
+        match_order(order)
 
     def update(self, request, *args, **kwargs):
         raise MethodNotAllowed(request.method)
@@ -71,5 +74,8 @@ class OrderView(ModelViewSet):
 
 class TransactionView(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Transaction.objects.filter(buy_order__user=user) | Transaction.objects.filter(sell_order__user=user)

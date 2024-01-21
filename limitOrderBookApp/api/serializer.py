@@ -11,17 +11,20 @@ class StockSerializer(serializers.ModelSerializer):
 
 class OrderSerializer (serializers.ModelSerializer):
     user = serializers.StringRelatedField()
-    stock_short_name = serializers.SlugRelatedField(slug_field='stock_short_name', queryset=Stock.objects.all())
+    stock = serializers.SlugRelatedField(slug_field='stock_short_name', queryset=Stock.objects.all())
+    order_status = serializers.ReadOnlyField()
+    current_quantity = serializers.ReadOnlyField()
 
     class Meta:
         model = Order
-        fields = ['id', 'user', 'stock_short_name', 'order_type', 'price', 'quantity', 'create_at']
+        fields = ['id', 'user', 'stock', 'order_type', 'order_status', 'price', 'quantity',
+                  'current_quantity', 'create_at']
 
 
 class TransactionSerializer (serializers.ModelSerializer):
-    order = serializers.StringRelatedField()
+    buy_order = serializers.StringRelatedField()
+    sell_order = serializers.StringRelatedField()
 
     class Meta:
         model = Transaction
         fields = '__all__'
-
