@@ -4,7 +4,7 @@ from limitOrderBookApp.models import Order, Transaction
 
 def match_order(order: Order):
     order_type = 'sell' if order.order_type == 'buy' else 'buy'
-    matching_orders = Order.objects.exclude(user=order.user).filter(order_type=order_type, order_status='open',
+    matching_orders = Order.objects.exclude(user=order.user).filter(stock=order.stock, order_type=order_type, order_status='open',
                                                                     price=order.price).order_by('create_at')
     order.current_quantity = order.quantity
 
