@@ -21,10 +21,10 @@ export function Stocks() {
     function fetchStocks() {
         axiosInstance.get(config.url.stocks)
             .then(response => response.data)
-            .then(processStockResponse);
+            .then(processFetchStocks);
     }
 
-    function processStockResponse(payload) {
+    function processFetchStocks(payload) {
         dispatch({
             type: 'SET_STOCKS',
             payload
