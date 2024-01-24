@@ -2,17 +2,24 @@ export {
     url,
     requestTimeout,
     authToken,
-    contentType
+    contentType,
+    links
 };
 
 const url = {
-    base: 'http://127.0.0.1:8000/api/v1/',
+    base: document.location.origin,
+    api: 'http://127.0.0.1:8000/api/v1/',
     jwtAuth: 'auth/jwt/create/',
     stocks: '/stocks/'
 };
 const requestTimeout = 5000;
 const authToken = getAuthToken();
 const contentType = 'application/json';
+const links = {
+    stocks: '/',
+    orders: 'orders',
+    transactions: 'transactions'
+}
 
 function getAuthToken() {
     const storageKey = 'access_token';

@@ -17,7 +17,7 @@ const router = createBrowserRouter([
                 element: <Stock/>
             },
             {
-                path: "/orders",
+                path: "orders",
                 element: <Order/>
             },
         ]
@@ -27,11 +27,9 @@ const router = createBrowserRouter([
 const rootNode = document.getElementById('root');
 
 ReactDOM.createRoot(rootNode).render(
-    <React.StrictMode>
-        <LimitOrderBookProvider>
-            <RouterProvider router={router}>
-                <App/>
-            </RouterProvider>
-        </LimitOrderBookProvider>
-    </React.StrictMode>,
+    <LimitOrderBookProvider>
+        <RouterProvider router={router}>
+            <App/>
+        </RouterProvider>
+    </LimitOrderBookProvider>
 )

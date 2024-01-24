@@ -9,7 +9,7 @@ const headers = {
     accept: config.contentType
 };
 const axiosConfig = {
-    baseURL: config.url.base,
+    baseURL: config.url.api,
     timeout: config.requestTimeout,
     headers
 };
