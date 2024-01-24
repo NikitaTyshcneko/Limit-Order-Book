@@ -49,7 +49,6 @@ def logout_request(request):
 
 # Create your views here.
 class StockView(ModelViewSet):
-    permission_classes = [IsAuthenticated]
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
 

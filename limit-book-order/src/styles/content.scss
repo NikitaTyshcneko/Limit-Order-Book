@@ -1,0 +1,31 @@
+@import 'variables';
+
+// Common styles
+.content-wrapper {
+  background-color: white;
+
+  .content {
+    // Common header styles
+    padding: $gridPadding*2;
+    margin: 0 auto;
+    max-width: 1280px;
+    box-sizing: border-box;
+  }
+}
+
+// Mobile styles
+@media screen and (max-width: $screenSize) {
+  .content-wrapper {
+    .content {
+      // Mobile-specific styles
+      padding: $gridPadding;
+    }
+  }
+}
+
+// Desktop styles
+@media screen and (min-width: $screenSize) {
+  .content {
+    // Desktop-specific styles
+  }
+}
