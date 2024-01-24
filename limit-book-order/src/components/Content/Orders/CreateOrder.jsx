@@ -1,22 +1,24 @@
 import { axiosInstance } from "../../../axios.js";
+import { useLimitOrderBookDispatch } from "../../../context/LimitOrderBookContext.jsx";
 import * as config from '../../../helpers/config.js';
 
 export { CreateOrder };
 
 function CreateOrder() {
+    const dispatch = useLimitOrderBookDispatch();
     const orderTypes = ['buy', 'sell'];
     const orderTypeButtons = orderTypes.map(type => (
-            <div className="order-type-button" key={type}>
-                <input name="order_type" type="radio" value={type} id={`order-type-${type}`} required />
-                <label htmlFor={`order-type-${type}`}>{type}</label>
-            </div>
-        ));
+        <div className="order-type-button" key={type}>
+            <input name="order_type" type="radio" value={type} id={`order-type-${type}`} required />
+            <label htmlFor={`order-type-${type}`}>{type}</label>
+        </div>
+    ));
 
     return (
         <div className="create-order">
             <div className="title">Create Order</div>
             <form className="form" onSubmit={handleSubmit}>
-                <input name="stock_short_name" type="text" placeholder="Stock Id" className="stock-id" required />
+                <input name="stock" type="text" placeholder="Stock Id" className="stock-id" required />
                 <input name="price" type="text" placeholder="Price" className="price" required />
                 <input name="quantity" type="number" placeholder="Qty" className="quantity" required />
                 {orderTypeButtons}
@@ -34,11 +36,9 @@ function CreateOrder() {
     };
 
     function processCreateOrder(response) {
-        console.log(response);
-
         dispatch({
-            type: 'SET_ORDERS',
-            payload
+            type: 'ADD_ORDER',
+            payload: response.data
         });
     }
 }
