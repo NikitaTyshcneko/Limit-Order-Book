@@ -10,7 +10,8 @@ function Transactions() {
     const appData = useLimitOrderBook();
     const dispatch = useLimitOrderBookDispatch();
     const transactionsData = appData.transactions;
-    const transactions = transactionsData?.map(transactionData => <Transaction data={transactionData} key={transactionData.id}/>);
+    const renderer = transactionData => <Transaction data={transactionData} key={transactionData.id} />
+    const transactions = transactionsData?.map(renderer);
 
     useEffect(fetchTransactions, []);
 

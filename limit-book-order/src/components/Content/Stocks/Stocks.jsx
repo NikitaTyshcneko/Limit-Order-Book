@@ -8,7 +8,8 @@ export function Stocks() {
     const appData = useLimitOrderBook();
     const dispatch = useLimitOrderBookDispatch();
     const stocksData = appData.stocks;
-    const stocks = stocksData?.map(stockData => <Stock data={stockData} key={stockData.id} />);
+    const renderer = stockData => <Stock data={stockData} key={stockData.id} />;
+    const stocks = stocksData?.map(renderer);
 
     useEffect(fetchStocks, []);
 

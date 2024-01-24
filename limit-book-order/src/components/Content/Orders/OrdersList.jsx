@@ -10,7 +10,8 @@ function OrdersList() {
     const appData = useLimitOrderBook();
     const dispatch = useLimitOrderBookDispatch();
     const ordersData = appData.orders;
-    const orders = ordersData?.map(orderData => <Order data={orderData} key={orderData.id} />);
+    const renderer = orderData => <Order data={orderData} key={orderData.id} />;
+    const orders = ordersData?.map(renderer);
 
     useEffect(fetchOrders, []);
 
