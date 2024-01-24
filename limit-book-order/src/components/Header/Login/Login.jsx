@@ -6,19 +6,15 @@ import {useLimitOrderBook} from "../../../context/LimitOrderBookContext.jsx";
 export function Login() {
     const appData = useLimitOrderBook();
     const [isLoginMenuOpen, setLoginMenuOpen] = useState(false);
-
     const toggleLoginMenu = () => setLoginMenuOpen(!isLoginMenuOpen);
+    const loginForm = appData.isLogin
+        ? <LogoutMenu isLoginMenuOpen={isLoginMenuOpen} />
+        : <LoginMenu isLoginMenuOpen={isLoginMenuOpen} />;
 
     return (
         <div className={"login-wrapper"}>
-            <i className="fas fa-user login-icon" onClick={toggleLoginMenu}></i>
-            {appData.isLogin ?
-                <>
-                    <LogoutMenu isLoginMenuOpen={isLoginMenuOpen}/>
-                </> :
-                <>
-                    <LoginMenu isLoginMenuOpen={isLoginMenuOpen}/>
-                </>}
+            <span className="fas fa-user login-icon" onClick={toggleLoginMenu}></span>
+            {loginForm}
         </div>
     );
 }
