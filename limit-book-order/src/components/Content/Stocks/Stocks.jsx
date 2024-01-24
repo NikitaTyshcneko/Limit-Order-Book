@@ -19,7 +19,9 @@ export function Stocks() {
     );
 
     function fetchStocks() {
-        axiosInstance.get(config.url.stocks).then(response => response.data).then(processStockResponse);
+        axiosInstance.get(config.url.stocks)
+            .then(response => response.data)
+            .then(processStockResponse);
     }
 
     function processStockResponse(payload) {

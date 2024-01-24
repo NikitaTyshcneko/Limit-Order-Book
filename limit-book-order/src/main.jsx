@@ -6,6 +6,7 @@ import { LimitOrderBookProvider } from "./context/LimitOrderBookContext.jsx";
 import { Stocks } from "./components/Content/Stocks/Stocks.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Orders } from "./components/Content/Orders/Orders.jsx";
+import { Transactions } from "./components/Content/Transactions/Transactions.jsx";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             {
                 path: "orders",
                 element: <Orders/>
+            },
+            {
+                path: "transactions",
+                element: <Transactions/>
             },
         ]
     },

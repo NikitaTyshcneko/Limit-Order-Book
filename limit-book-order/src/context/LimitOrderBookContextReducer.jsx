@@ -20,6 +20,11 @@ export const limitOrderBookReducer = (state, action) => {
             ...state,
             orders: action.payload,
         };
+      case 'SET_TRANSACTIONS':
+        return {
+            ...state,
+            orders: action.payload,
+        };
     default:
       return state;
   }

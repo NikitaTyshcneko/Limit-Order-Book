@@ -12,7 +12,7 @@ function OrdersList() {
     const ordersData = appData.orders;
     const orders = ordersData?.map(orderData => <Order data={orderData} key={orderData.id} />);
 
-    useEffect(fetchOrders, []);
+    useEffect(getOrders, []);
 
     return (
         <div className='orders'>
@@ -20,11 +20,13 @@ function OrdersList() {
         </div>
     );
 
-    function fetchOrders() {
-        axiosInstance.get(config.url.orders).then(response => response.data).then(processOrderResponse);
+    function getOrders() {
+        axiosInstance.get(config.url.orders)
+            .then(response => response.data)
+            .then(processGetOrders);
     }
 
-    function processOrderResponse(payload) {
+    function processGetOrders(payload) {
         dispatch({
             type: 'SET_ORDERS',
             payload

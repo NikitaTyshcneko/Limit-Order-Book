@@ -11,7 +11,8 @@ const url = {
     api: 'http://127.0.0.1:8000/api/v1/',
     jwtAuth: 'auth/jwt/create/',
     stocks: '/stocks/',
-    orders: '/orders/'
+    orders: '/orders/',
+    transactions: 'transactions'
 };
 const requestTimeout = 5000;
 const authToken = getAuthToken();
@@ -20,7 +21,7 @@ const links = {
     stocks: '/',
     orders: 'orders',
     transactions: 'transactions'
-}
+};
 
 function getAuthToken() {
     const storageKey = 'access_token';
