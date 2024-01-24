@@ -3,7 +3,7 @@ import { UserMenu } from "./UserMenu.jsx";
 import React, {useState} from "react";
 import {useLimitOrderBook} from "../../../context/LimitOrderBookContext.jsx";
 
-export function Login() {
+export function Account() {
     const appData = useLimitOrderBook();
     const [isLoginMenuOpen, setLoginMenuOpen] = useState(false);
     const toggleLoginMenu = () => setLoginMenuOpen(!isLoginMenuOpen);

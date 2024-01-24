@@ -1,4 +1,4 @@
-import {Login} from "./Login/Login.jsx";
+import { Account } from "./Account/Account.jsx";
 
 export function Header() {
     return (
@@ -8,7 +8,7 @@ export function Header() {
                     <span className={'header-logo-text'}>Limit Book Order</span>
                 </div>
                 <div className={"header-login"}>
-                    <Login/>
+                    <Account />
                 </div>
             </div>
         </div>

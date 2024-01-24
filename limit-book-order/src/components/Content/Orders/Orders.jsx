@@ -1,6 +1,18 @@
-import { OrderItem } from './OrderItem';
+import { useEffect } from 'react';
+import { axiosInstance } from '../../../axios.js';
+import { Order } from './Order.jsx';
+import { useLimitOrderBook, useLimitOrderBookDispatch } from "../../../context/LimitOrderBookContext.jsx";
+import * as config from '../../../helpers/config.js';
 
-export function Order() {
+export function Orders() {
+    const appData = useLimitOrderBook();
+    const ordersData = appData.orders;
+    const dispatch = useLimitOrderBookDispatch();
+
+    useEffect(fetchOrders, []);
+
+    const orders = ordersData?.map(orderData => <Order data={orderData} key={orderData.id}/>);
+    
     return (
         <div className="content-wrapper">
             <div className="content">
@@ -21,11 +33,20 @@ export function Order() {
                             </div>
                         </div>
                     </div>
-                    <div className='order-list'>
-                        <OrderItem/>
-                    </div>
+                    <div className='orders'>{orders}</div>
                 </div>
             </div>
         </div>
     );
+
+    function fetchOrders() {
+        axiosInstance.get(config.url.orders).then(response => response.data).then(processOrderResponse);
+    }
+
+    function processOrderResponse(payload) {
+        dispatch({
+            type: 'SET_ORDERS',
+            payload
+        });
+    }
 }

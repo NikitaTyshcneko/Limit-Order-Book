@@ -5,7 +5,7 @@ import './styles/main.scss'
 import { LimitOrderBookProvider } from "./context/LimitOrderBookContext.jsx";
 import { Stock } from "./components/Content/Stock/Stock.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Order } from "./components/Content/Order/Order.jsx";
+import { Orders } from "./components/Content/Orders/Orders.jsx";
 
 const router = createBrowserRouter([
     {
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "orders",
-                element: <Order/>
+                element: <Orders/>
             },
         ]
     },
