@@ -20,8 +20,7 @@ from limitOrderBookApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', views.register_request),
-    path('login/', views.login_request),
-    path('logout/', views.logout_request),
-    path('limit-order-book/', include('limitOrderBookApp.urls')),
+    path('api/v1/', include('limitOrderBookApp.api.urls')),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
 ]
