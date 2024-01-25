@@ -34,6 +34,7 @@ function CreateOrder({ opener }) {
 
         event.preventDefault();
         axiosInstance.post(config.url.orders, formData).then(processCreateOrder);
+        opener(false);
     };
 
     function processCreateOrder(response) {
