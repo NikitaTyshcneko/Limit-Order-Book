@@ -3,9 +3,9 @@
 @import "reset";
 @import "font";
 @import "application";
-@import "header/header";
-@import "content";
-@import "footer";
-@import "stocks";
-@import "orders/orders";
-@import "transactions";
+@import "components/header/header";
+@import "components/content";
+@import "components/footer";
+@import "components/stocks";
+@import "components/orders/orders";
+@import "components/transactions";

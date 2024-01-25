@@ -16,7 +16,7 @@ function App() {
     const dispatch = useLimitOrderBookDispatch();
    
     useEffect(onLoad, []);
-    useEffect(onLoginSatusChange, [authenticated]);
+    useEffect(onLoginStatusChange, [authenticated]);
 
     return (
         <>
@@ -28,7 +28,7 @@ function App() {
         </>
     );
 
-    function onLoginSatusChange() {
+    function onLoginStatusChange() {
         authenticated && fetchStocks();
     }
 
