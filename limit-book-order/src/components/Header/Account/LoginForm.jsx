@@ -27,7 +27,7 @@ export function LoginForm({ opener }) {
     
     function processLogin(response) {
         auth.writeAuthTokens(response.data);
-        axiosInstance.defaults.headers['Authorization'] = config.authToken;
+        axiosInstance.defaults.headers['Authorization'] = auth.readAuthToken();
         dispatch({ type: 'LOGIN', payload: true });
         setLoginStatus({ ok: true });
         opener(false);

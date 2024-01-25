@@ -6,6 +6,7 @@ import { LoginPrompt } from './components/content/LoginPrompt.jsx';
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import * as config from './helpers/config.js';
+import * as auth from './helpers/authorization.js';
 
 export default App;
 
@@ -15,28 +16,25 @@ function App() {
     const dispatch = useLimitOrderBookDispatch();
    
     useEffect(onLoad, []);
+    useEffect(onLoginSatusChange, [authenticated]);
 
     return (
         <>
             <Header/>
                 <div className="content">
-                    { 
-                        authenticated
-                            ? <Outlet />
-                            : <LoginPrompt />
-                    }
+                    {authenticated ? <Outlet /> : <LoginPrompt />}
                 </div>
             <Footer/>
         </>
     );
 
-    function onLoad() {
-        const loggedIn = config.authToken;
+    function onLoginSatusChange() {
+        authenticated && fetchStocks();
+    }
 
-        if (loggedIn) {
-            dispatch({ type: 'LOGIN', payload: true });
-            fetchStocks();
-        }
+    function onLoad() {
+        const loginSaved = auth.readAuthToken();
+        loginSaved && dispatch({ type: 'LOGIN', payload: true });
     }
 
     function fetchStocks() {

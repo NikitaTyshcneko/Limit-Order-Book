@@ -1,9 +1,6 @@
-import * as auth from './authorization.js';
-
 export {
     url,
     requestTimeout,
-    authToken,
     contentType,
     links,
     rootDir,
@@ -20,7 +17,6 @@ const url = {
     transactions: 'transactions'
 };
 const requestTimeout = 5000;
-const authToken = auth.readAuthToken();
 const contentType = 'application/json';
 const links = {
     stocks: '/',
