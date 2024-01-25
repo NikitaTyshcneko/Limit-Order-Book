@@ -15,3 +15,30 @@ body {
     flex-direction: column;
     overflow: auto;
 }
+
+.data-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: calc($grid-base / 2);
+}
+
+.data-list-item {
+    display: grid;
+    column-gap: $grid-base;
+    grid-auto-flow: column;
+    background-color: $color-white;
+    padding: $grid-base;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .data-list-item {
+        padding: calc($grid-base / 2) $grid-base;
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .data-list-item {
+        padding: $grid-base;
+    }
+}

@@ -1,0 +1,30 @@
+.transactions {
+    @extend .data-list;
+
+    .transaction {
+        @extend .data-list-item;
+
+        grid-template-columns: 1fr 6fr 4fr 1fr 1fr auto;
+    }
+
+    .buy_order,
+    .sell_order {
+        padding-left: 20%;
+    }
+
+    .create_at {
+        text-align: right;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .transactions {
+        .create_at {
+            display: none;
+        }
+
+        .quantity {
+            text-align: right;
+        }
+    }
+}

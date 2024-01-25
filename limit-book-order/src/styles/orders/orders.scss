@@ -1,0 +1,27 @@
+@import 'create_order';
+
+.orders {
+    @extend .data-list;
+
+    .order {
+        @extend .data-list-item;
+
+        grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr 1fr 1fr auto;
+    }
+
+    .create_at {
+        text-align: right;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .orders {
+        .create_at {
+            display: none;
+        }
+
+        .current_quantity {
+            text-align: right;
+        }
+    }
+}
