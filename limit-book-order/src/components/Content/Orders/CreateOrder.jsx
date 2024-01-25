@@ -23,7 +23,7 @@ function CreateOrder({ opener }) {
         <div className={`create-order`}>
             <form className="form" onSubmit={handleSubmit}>
                 <select name="stock" className="select stock" required>
-                    <option>Select stock...</option>
+                    <option value="">Select stock...</option>
                     {stockSelectOptions}
                 </select>
                 <input name="price" type="text" placeholder="Price" className="input price" required />
