@@ -17,6 +17,6 @@ var labels = {
     'order_type': 'Type',
     'order_status': 'Status',
     'quantity': 'Qty',
-    'current_quantity': 'Current qty',
+    'current_quantity': 'Curr. qty',
     'create_at': 'Created'
 };

@@ -27,7 +27,8 @@
             column-gap: calc($grid-base / 2);
         }
 
-        .input {
+        .input,
+        .select {
             @extend .site-input;
         }
 
@@ -78,7 +79,8 @@
             justify-content: space-between;
             flex-wrap: wrap;
 
-            .input {
+            .input,
+            .select {
                 width: calc(33% - $grid-base);
             }
 

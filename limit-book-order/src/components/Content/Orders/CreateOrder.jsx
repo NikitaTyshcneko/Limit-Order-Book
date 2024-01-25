@@ -1,10 +1,12 @@
 import { axiosInstance } from "../../../axios.js";
-import { useLimitOrderBookDispatch } from "../../../context/LimitOrderBookContext.jsx";
+import { useLimitOrderBook, useLimitOrderBookDispatch } from "../../../context/LimitOrderBookContext.jsx";
 import * as config from '../../../helpers/config.js';
 
 export { CreateOrder };
 
 function CreateOrder({ opener }) {
+    const appData = useLimitOrderBook();
+    const stocks = appData.stocks;
     const dispatch = useLimitOrderBookDispatch();
     const orderTypes = ['buy', 'sell'];
     const orderTypeButtons = orderTypes.map(type => (
@@ -14,13 +16,18 @@ function CreateOrder({ opener }) {
         </div>
     ));
     const closeModal = () => opener(false);
+    const stockOptionRender = stock => <option value={stock.stock_short_name} key={stock.id}>{stock.stock_name}</option>;
+    const stockSelectOptions = stocks.map(stockOptionRender);
 
     return (
         <div className={`create-order`}>
             <form className="form" onSubmit={handleSubmit}>
-                <input name="stock" type="text" placeholder="Stock Id" className="input stock" required />
+                <select name="stock" className="select stock" required>
+                    <option>Select stock...</option>
+                    {stockSelectOptions}
+                </select>
                 <input name="price" type="text" placeholder="Price" className="input price" required />
-                <input name="quantity" type="number" placeholder="Qty" className="input quantity" required />
+                <input name="quantity" type="number" placeholder="Qty" className="input quantity" required min="1" />
                 {orderTypeButtons}
                 <button className="submit">Create</button>
                 <div className="close fas fa-times" onClick={closeModal}></div>

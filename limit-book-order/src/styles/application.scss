@@ -7,7 +7,7 @@ body,
 body {
     color: $color-black;
     background-color: $color-dark-white;
-    font: $font-size-base / 1.2 $font-family-base;
+    font: #{$font-size-base} / 1.2 $font-family-base;
 }
 
 .root {
@@ -43,6 +43,7 @@ body {
         padding-top: calc($grid-base / 2);
         padding-bottom: calc($grid-base / 2);
         text-transform: capitalize;
+        color: $color-brand-darkblue;
     }
 }
 
@@ -71,6 +72,10 @@ body {
 }
 
 @media (max-width: $breakpoint-mobile) {
+    .data-list {
+        font-size: $font-size-middle;
+    }
+    
     .data-list-item {
         padding: calc($grid-base / 2) $grid-base;
 

@@ -29,6 +29,11 @@
 
 @media (max-width: $breakpoint-mobile) {
     .orders {
+        .order {
+            grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 0;
+            column-gap: calc($grid-base / 2);
+        }
+
         .create_at {
             display: none;
         }
