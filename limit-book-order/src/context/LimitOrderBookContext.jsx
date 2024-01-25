@@ -3,11 +3,8 @@ import {limitOrderBookReducer} from "./LimitOrderBookContextReducer.jsx";
 
 export {useLimitOrderBook, useLimitOrderBookDispatch, LimitOrderBookContext, LimitOrderBookContextDispatch}
 
-// Create the context
 const LimitOrderBookContext = createContext();
-
 const LimitOrderBookContextDispatch = createContext();
-
 const initialState = {
     isLogin: false,
     stocks: [],

@@ -2,6 +2,7 @@ import {axiosInstance} from '../../../axios.js';
 import {useLimitOrderBookDispatch} from '../../../context/LimitOrderBookContext.jsx';
 import { useState } from "react";
 import * as config from '../../../helpers/config.js';
+import * as auth from '../../../helpers/authorization.js';
 
 export function LoginForm({ opener }) {
     const dispatch = useLimitOrderBookDispatch();
@@ -25,8 +26,7 @@ export function LoginForm({ opener }) {
     };
     
     function processLogin(response) {
-        localStorage.setItem('access_token', response.data.access);
-        localStorage.setItem('refresh_token', response.data.refresh);
+        auth.writeAuthTokens(response.data);
         axiosInstance.defaults.headers['Authorization'] = config.authToken;
         dispatch({ type: 'LOGIN', payload: true });
         setLoginStatus({ ok: true });

@@ -1,31 +1,42 @@
-import {useLimitOrderBookDispatch} from "./context/LimitOrderBookContext.jsx";
+import { useLimitOrderBook, useLimitOrderBookDispatch } from "./context/LimitOrderBookContext.jsx";
 import { axiosInstance } from "./axios.js";
-import {Header} from "./components/Header/Header.jsx";
-import {Footer} from "./components/Footer/Footer.jsx";
-import {useEffect} from "react";
-import {Outlet} from "react-router-dom";
+import { Header } from "./components/Header/Header.jsx";
+import { Footer } from "./components/Footer/Footer.jsx";
+import { LoginPrompt } from './components/content/LoginPrompt.jsx';
+import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import * as config from './helpers/config.js';
 
 export default App;
 
 function App() {
+    const appData = useLimitOrderBook();
+    const authenticated = appData.isLogin;
     const dispatch = useLimitOrderBookDispatch();
-    
+   
     useEffect(onLoad, []);
 
     return (
         <>
             <Header/>
-            <div className="content">
-                <Outlet/>
-            </div>
+                <div className="content">
+                    { 
+                        authenticated
+                            ? <Outlet />
+                            : <LoginPrompt />
+                    }
+                </div>
             <Footer/>
         </>
-    )
+    );
 
     function onLoad() {
-        config.authToken && dispatch({ type: 'LOGIN', payload: true });
-        fetchStocks();
+        const loggedIn = config.authToken;
+
+        if (loggedIn) {
+            dispatch({ type: 'LOGIN', payload: true });
+            fetchStocks();
+        }
     }
 
     function fetchStocks() {

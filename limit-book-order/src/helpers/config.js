@@ -1,3 +1,5 @@
+import * as auth from './authorization.js';
+
 export {
     url,
     requestTimeout,
@@ -18,7 +20,7 @@ const url = {
     transactions: 'transactions'
 };
 const requestTimeout = 5000;
-const authToken = getAuthToken();
+const authToken = auth.readAuthToken();
 const contentType = 'application/json';
 const links = {
     stocks: '/',
@@ -30,13 +32,3 @@ const logoUrl = `${rootDir}/images/react.svg`;
 const title = {
     site: 'Limit Book Order'
 };
-
-function getAuthToken() {
-    const storageKey = 'access_token';
-    const accessToken = localStorage.getItem(storageKey);
-    const authToken = accessToken
-        ? 'Bearer ' + accessToken
-        : null;
-
-    return authToken;
-}

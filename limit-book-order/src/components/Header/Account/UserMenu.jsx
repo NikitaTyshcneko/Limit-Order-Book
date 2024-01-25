@@ -1,12 +1,12 @@
 import {axiosInstance} from "../../../axios.js";
 import {useLimitOrderBookDispatch} from "../../../context/LimitOrderBookContext.jsx";
 import * as config from '../../../helpers/config.js';
+import * as auth from '../../../helpers/authorization.js';
 
 export function UserMenu({ opener }) {
     const dispatch = useLimitOrderBookDispatch();
     const handleLogout = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
+        auth.clearAuthTokens();
         axiosInstance.defaults.headers['Authorization'] = null;
         dispatch({ type: 'LOGIN', payload: false });
         opener(false);
