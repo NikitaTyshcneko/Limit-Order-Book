@@ -1,6 +1,7 @@
 export {
     listAttrs,
-    keyToLabel
+    keyToLabel,
+    formatRender
 }
 
 function listAttrs(list) {
@@ -9,6 +10,26 @@ function listAttrs(list) {
 
 function keyToLabel(key) {
     return labels[key] ?? key.replace(/_+/g, ' ');
+}
+
+function formatRender(value, key) {
+    const timestampKeys = ['create_at'];
+    const valueIsIimestamp = timestampKeys.includes(key);
+
+    return valueIsIimestamp ? formatTimestamp(value) : value;
+}
+
+function formatTimestamp(timestamp) {
+    const options = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false
+    };
+
+    return (new Date(timestamp)).toLocaleString(undefined, options);
 }
 
 var labels = {
