@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { axiosInstance } from "../../../axios.js";
 import { useLimitOrderBook, useLimitOrderBookDispatch } from "../../../context/LimitOrderBookContext.jsx";
 import * as config from '../../../helpers/config.js';
+import * as format from '../../../helpers/format.js';
 
 export function Stocks() {
     const appData = useLimitOrderBook();
@@ -10,6 +11,7 @@ export function Stocks() {
     const stocksData = appData.stocks;
     const renderer = stockData => <Stock data={stockData} key={stockData.id} />;
     const stocks = stocksData?.map(renderer);
+    const titles = format.listAttrs(stocksData)?.map(key => <div className={`title ${key}`} key={key}>{format.keyToLabel(key)}</div>);
 
     useEffect(fetchStocks, []);
 
@@ -17,6 +19,9 @@ export function Stocks() {
         <>
             <div className="page-title">Stocks</div>
             <div className="stocks">
+                <div className="stock titles">
+                    {titles}
+                </div>
                 {stocks}
             </div>
         </>

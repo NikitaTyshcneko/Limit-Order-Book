@@ -4,7 +4,7 @@
     .transaction {
         @extend .data-list-item;
 
-        grid-template-columns: 1fr 6fr 4fr 1fr 1fr auto;
+        grid-template-columns: 1fr 6fr 4fr 2fr 2fr 2fr;
     }
 
     .buy_order,

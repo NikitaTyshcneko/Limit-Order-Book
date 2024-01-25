@@ -8,8 +8,8 @@ export function Account() {
     const [isLoginMenuOpen, setLoginMenuOpen] = useState(false);
     const toggleLoginMenu = () => setLoginMenuOpen(!isLoginMenuOpen);
     const dropdown = appData.isLogin
-        ? <UserMenu />
-        : <LoginForm />;
+        ? <UserMenu opener={setLoginMenuOpen} />
+        : <LoginForm opener={setLoginMenuOpen} />;
 
     return (
         <div className="account">

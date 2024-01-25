@@ -3,6 +3,7 @@ import { useLimitOrderBook, useLimitOrderBookDispatch } from "../../../context/L
 import { axiosInstance } from '../../../axios.js';
 import { Transaction } from './Transaction.jsx';
 import * as config from '../../../helpers/config.js';
+import * as format from '../../../helpers/format.js';
 
 export { Transactions };
 
@@ -12,6 +13,7 @@ function Transactions() {
     const transactionsData = appData.transactions;
     const renderer = transactionData => <Transaction data={transactionData} key={transactionData.id} />
     const transactions = transactionsData?.map(renderer);
+    const titles = format.listAttrs(transactionsData)?.map(key => <div className={`title ${key}`} key={key}>{format.keyToLabel(key)}</div>);
 
     useEffect(fetchTransactions, []);
 
@@ -19,6 +21,9 @@ function Transactions() {
         <>
             <div className="page-title">Transactions</div>
             <div className='transactions'>
+                <div className="transaction titles">
+                    {titles}
+                </div>
                 {transactions}
             </div>
         </>

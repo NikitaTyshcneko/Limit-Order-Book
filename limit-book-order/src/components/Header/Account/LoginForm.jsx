@@ -3,7 +3,7 @@ import {useLimitOrderBookDispatch} from '../../../context/LimitOrderBookContext.
 import { useState } from "react";
 import * as config from '../../../helpers/config.js';
 
-export function LoginForm() {
+export function LoginForm({ opener }) {
     const dispatch = useLimitOrderBookDispatch();
     const [loginStatus, setLoginStatus] = useState({ ok: true });
 
@@ -30,6 +30,7 @@ export function LoginForm() {
         axiosInstance.defaults.headers['Authorization'] = config.authToken;
         dispatch({ type: 'LOGIN', payload: true });
         setLoginStatus({ ok: true });
+        opener(false);
     }
 
     function processLoginFail(summary) {

@@ -6,7 +6,7 @@
     .order {
         @extend .data-list-item;
 
-        grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr 1fr 1fr auto;
+        grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr 1fr 1fr 2fr;
     }
 
     .create_at {
