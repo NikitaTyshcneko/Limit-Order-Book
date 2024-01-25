@@ -1,0 +1,26 @@
+.footer {
+    @include fluid-container;
+
+    display: flex;
+    align-items: center;
+    color: $color-white;
+}
+
+.footer-wrapper {
+    margin-top: auto;
+    background-color: $color-brand-darkblue;
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .footer {
+        padding-top: calc($grid-base / 2);
+        padding-bottom: calc($grid-base / 2);
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .footer {
+        padding-top: $grid-base;
+        padding-bottom: $grid-base;
+    }
+}

@@ -1,0 +1,45 @@
+@import 'create_order';
+
+.orders {
+    @extend .data-list;
+
+    .order {
+        @extend .data-list-item;
+
+        grid-template-columns: 1fr 2fr 2fr 1fr 1fr 1fr 1fr 1fr 2fr;
+    }
+
+    .create_at {
+        text-align: right;
+    }
+
+    .create-order-button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: $color-white;
+        background-color: $color-brand-darkblue;
+        font-size: 18px;
+        line-height: 30px;
+        text-align: center;
+        margin: -30px 0 calc($grid-base / 2) auto;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .orders {
+        .order {
+            grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 0;
+            column-gap: calc($grid-base / 2);
+        }
+
+        .create_at {
+            display: none;
+        }
+
+        .current_quantity {
+            text-align: right;
+        }
+    }
+}

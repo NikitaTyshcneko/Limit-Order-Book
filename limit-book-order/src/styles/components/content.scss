@@ -1,0 +1,17 @@
+.content {
+    @include fluid-container;
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .content {
+        padding-top: $grid-base;
+        padding-bottom: $grid-base;
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .content {
+        padding-top: $grid-base * 1.5;
+        padding-bottom: $grid-base * 2;
+    }
+}

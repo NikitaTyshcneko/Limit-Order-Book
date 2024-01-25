@@ -1,0 +1,39 @@
+.transactions {
+    @extend .data-list;
+
+    .transaction {
+        @extend .data-list-item;
+
+        grid-template-columns: 1fr 6fr 4fr 3fr 2fr 3fr;
+    }
+
+    .create_at {
+        text-align: right;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .transactions {
+        .transaction {       
+            grid-template-columns: 1fr 4fr 3fr 2fr 2fr 0;
+            column-gap: calc($grid-base / 2);
+        }
+
+        .create_at {
+            display: none;
+        }
+
+        .quantity {
+            text-align: right;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .transactions {
+        .buy_order,
+        .sell_order {
+            padding-left: 20%;
+        }
+    }
+}
