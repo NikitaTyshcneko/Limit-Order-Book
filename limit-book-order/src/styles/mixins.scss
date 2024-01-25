@@ -1,5 +1,17 @@
-@mixin content-size {
-  margin: 0 auto;
-  max-width: 1280px;
-  box-sizing: border-box;
+@mixin fluid-container {
+    width: 100%;
+    box-sizing: border-box;
+    
+    @media (max-width: $breakpoint-mobile) {
+        padding-left: $grid-base;
+        padding-right: $grid-base;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+        padding-left: $grid-base * 2;
+        padding-right: $grid-base * 2;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: $container-size-lg;
+    }
 }

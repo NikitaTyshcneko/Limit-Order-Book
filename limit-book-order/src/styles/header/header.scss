@@ -1,0 +1,32 @@
+@import "logo";
+@import "login_form";
+@import "user_menu";
+@import "account";
+
+.header {
+    @include fluid-container;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $color-white;
+}
+
+.header-wrapper {
+    background-color: $color-brand-darkblue;
+    position: sticky;
+    top: 0;
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .header {
+        height: $grid-base * 3;
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .header {
+        height: $grid-base * 3.5;
+        position: relative;
+    }
+}

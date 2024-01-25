@@ -1,11 +1,17 @@
 html,
 body,
-#root{
-  height: 100%;
+.root {
+    height: 100%;
 }
 
-#root{
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
+body {
+    color: $color-black;
+    background-color: $color-dark-white;
+    font: $font-size-base / 1.2 $font-family-base;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }

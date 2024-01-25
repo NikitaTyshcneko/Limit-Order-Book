@@ -8,13 +8,15 @@ export function Account() {
     const [isLoginMenuOpen, setLoginMenuOpen] = useState(false);
     const toggleLoginMenu = () => setLoginMenuOpen(!isLoginMenuOpen);
     const dropdown = appData.isLogin
-        ? <UserMenu isLoginMenuOpen={isLoginMenuOpen} />
-        : <LoginForm isLoginMenuOpen={isLoginMenuOpen} />;
+        ? <UserMenu />
+        : <LoginForm />;
 
     return (
-        <div className="login-wrapper">
-            <span className="fas fa-user login-icon" onClick={toggleLoginMenu}></span>
-            {dropdown}
+        <div className="account">
+            <span className="account-button fas fa-user" onClick={toggleLoginMenu}></span>
+            <div className={`account-dropdown ${isLoginMenuOpen ? 'open' : ''}`}>
+                {dropdown}
+            </div>
         </div>
     );
 }

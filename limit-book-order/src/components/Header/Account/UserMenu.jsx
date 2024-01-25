@@ -2,7 +2,7 @@ import {axiosInstance} from "../../../axios.js";
 import {useLimitOrderBookDispatch} from "../../../context/LimitOrderBookContext.jsx";
 import * as config from '../../../helpers/config.js';
 
-export function UserMenu({isLoginMenuOpen}) {
+export function UserMenu() {
     const dispatch = useLimitOrderBookDispatch();
     const handleLogout = () => {
         localStorage.removeItem('access_token');
@@ -16,12 +16,13 @@ export function UserMenu({isLoginMenuOpen}) {
         [config.links.orders]: 'Orders',
         [config.links.transactions]: 'Transactions'
     };
-    const menuItems = Object.entries(links).map(([path, label]) => <a href={path} key={path}>{label}</a>);
+    const renderer = ([path, label]) => <a class="user-link" href={path} key={path}>{label}</a>;
+    const menuItems = Object.entries(links).map(renderer);
 
     return (
-        <div className={`logout-menu-wrapper ${isLoginMenuOpen ? 'open' : ''}`}>
+        <div className="user-menu">
             {menuItems}
-            <button className="logout-button" onClick={handleLogout}>Log Out</button>
+            <div className="user-link" onClick={handleLogout}>Log Out</div>
         </div>
     );
 }

@@ -1,0 +1,44 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    row-gap: $grid-base;
+    color: $color-black;
+
+    .input {
+        background-color: $color-white;
+        border: 1px solid $color-brand-darkblue;
+        height: $grid-base * 2 + 4px;
+        box-sizing: border-box;
+        padding: 0 $grid-base;
+    }
+
+    .button {
+        cursor: pointer;
+        height: $grid-base * 2;
+        background-color: $color-brand-darkblue;
+        color: $color-white;
+    }
+
+    .error-message {
+        color: $color-brand-red;
+        font-size: $font-size-small;
+    }
+
+    &.error {
+        .input {
+            border: 1px solid $color-brand-red;
+        }
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .login-form {
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .login-form {
+        width: 240px;
+    }
+}

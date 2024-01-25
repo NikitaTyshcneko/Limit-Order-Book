@@ -1,23 +1,19 @@
-import {axiosInstance} from "../../../axios.js";
-import {useLimitOrderBookDispatch} from "../../../context/LimitOrderBookContext.jsx";
+import {axiosInstance} from '../../../axios.js';
+import {useLimitOrderBookDispatch} from '../../../context/LimitOrderBookContext.jsx';
 import { useState } from "react";
 import * as config from '../../../helpers/config.js';
 
-export function LoginForm({ isLoginMenuOpen }) {
+export function LoginForm() {
     const dispatch = useLimitOrderBookDispatch();
     const [loginStatus, setLoginStatus] = useState({ ok: true });
 
     return (
-        <div className={`login-menu-wrapper ${isLoginMenuOpen ? 'open' : ''} ${loginStatus.ok ? '' : 'error'}`}>
-            <form className="login-menu-inputs" onSubmit={handleLogin}>
-                <input name="username" type="text" className="login-menu-input-text" placeholder="username" required/>
-                <input name="password" type="password" className="login-menu-input-text" placeholder="password" required />
-                <div className="login-menu-login-button-and-error">
-                    <button className="login-menu-login-button">Log In</button>
-                    {loginStatus.ok || <div className="login-menu-error">{loginStatus.message}</div> }
-                </div>
-            </form>
-        </div>
+        <form className={`login-form ${loginStatus.ok ? '' : 'error'}`} onSubmit={handleLogin}>
+            <input name="username" type="text" className="input login" placeholder="Login" required/>
+            <input name="password" type="password" className="input password" placeholder="Password" required />
+            <button className="button">Log In</button>
+            {loginStatus.ok || <div className="error-message">{loginStatus.message}</div> }
+        </form>
     );
 
     function handleLogin(event) {

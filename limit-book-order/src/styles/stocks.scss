@@ -16,10 +16,10 @@
   }
 }
 
-@media screen and (max-width: $screenSize) {
+@media (max-width: $breakpoint-mobile) {
 
 }
 
-@media screen and (min-width: $screenSize) {
+@media (min-width: $breakpoint-desktop)  {
 
 }

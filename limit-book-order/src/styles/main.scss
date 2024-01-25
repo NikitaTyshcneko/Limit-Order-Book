@@ -1,9 +1,9 @@
 @import "variables";
 @import "mixins";
-@import "header";
+@import "reset";
+@import "font";
+@import "application";
+@import "header/header";
 @import "content";
 @import "footer";
-@import "login";
-@import "logout";
-@import "stock";
-@import "reset";
+@import "stocks";

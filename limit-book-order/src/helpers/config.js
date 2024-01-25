@@ -3,7 +3,10 @@ export {
     requestTimeout,
     authToken,
     contentType,
-    links
+    links,
+    rootDir,
+    logoUrl,
+    title
 };
 
 const url = {
@@ -21,6 +24,11 @@ const links = {
     stocks: '/',
     orders: 'orders',
     transactions: 'transactions'
+};
+const rootDir = `${url.base}/src`;
+const logoUrl = `${rootDir}/images/react.svg`;
+const title = {
+    site: 'Limit Book Order'
 };
 
 function getAuthToken() {
