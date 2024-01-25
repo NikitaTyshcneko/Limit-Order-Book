@@ -3,3 +3,4 @@
 venv
 static
 .idea
+./limit-book-order/package-lock.json

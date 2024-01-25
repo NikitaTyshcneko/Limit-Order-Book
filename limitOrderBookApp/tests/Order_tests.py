@@ -25,7 +25,7 @@ class OrderViewTests(APITestCase):
         self.client.force_authenticate(user=self.user)
 
     def test_create_order(self):
-        url = '/limit-order-book/api/orders/'
+        url = '/api/v1/orders/'
         print(url)
         data = {
             'user': self.user.id,

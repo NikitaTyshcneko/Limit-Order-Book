@@ -2,11 +2,11 @@ import { useLimitOrderBook, useLimitOrderBookDispatch } from "./context/LimitOrd
 import { axiosInstance } from "./axios.js";
 import { Header } from "./components/Header/Header.jsx";
 import { Footer } from "./components/Footer/Footer.jsx";
-import { LoginPrompt } from './components/content/LoginPrompt.jsx';
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import * as config from './helpers/config.js';
 import * as auth from './helpers/authorization.js';
+import {LoginPrompt} from "./components/Content/LoginPrompt.jsx";
 
 export default App;
 
