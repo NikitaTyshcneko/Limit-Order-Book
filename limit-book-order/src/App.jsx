@@ -1,25 +1,52 @@
-import {useLimitOrderBookDispatch} from "./context/LimitOrderBookContext.jsx";
-import {Header} from "./components/Header/Header.jsx";
-import {Footer} from "./components/Foorter/Footer.jsx";
-import {useEffect} from "react";
-import {Outlet} from "react-router-dom";
+import { useLimitOrderBook, useLimitOrderBookDispatch } from "./context/LimitOrderBookContext.jsx";
+import { axiosInstance } from "./axios.js";
+import { Header } from "./components/Header/Header.jsx";
+import { Footer } from "./components/Footer/Footer.jsx";
+import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import * as config from './helpers/config.js';
+import * as auth from './helpers/authorization.js';
+import {LoginPrompt} from "./components/Content/LoginPrompt.jsx";
+
+export default App;
 
 function App() {
+    const appData = useLimitOrderBook();
+    const authenticated = appData.isLogin;
     const dispatch = useLimitOrderBookDispatch();
-
-    useEffect(() => {
-        if (localStorage.getItem('access_token')) {
-            dispatch({type: 'LOGIN', payload: true})
-        }
-    }, []);
+   
+    useEffect(onLoad, []);
+    useEffect(onLoginStatusChange, [authenticated]);
 
     return (
         <>
             <Header/>
-            <Outlet/>
+                <div className="content">
+                    {authenticated ? <Outlet /> : <LoginPrompt />}
+                </div>
             <Footer/>
         </>
-    )
-}
+    );
 
-export default App
+    function onLoginStatusChange() {
+        authenticated && fetchStocks();
+    }
+
+    function onLoad() {
+        const loginSaved = auth.readAuthToken();
+        loginSaved && dispatch({ type: 'LOGIN', payload: true });
+    }
+
+    function fetchStocks() {
+        axiosInstance.get(config.url.stocks)
+            .then(response => response.data)
+            .then(processFetchStocks);
+    }
+
+    function processFetchStocks(payload) {
+        dispatch({
+            type: 'SET_STOCKS',
+            payload
+        });
+    }
+}

@@ -1,17 +1,18 @@
 import axios from 'axios';
+import * as config from './helpers/config.js';
+import * as auth from './helpers/authorization.js';
 
 export { axiosInstance };
 
-const baseUrl = 'http://127.0.0.1:8000/api/v1/';
+const headers = {
+    Authorization: auth.readAuthToken(),
+    'Content-Type': config.contentType,
+    accept: config.contentType
+};
+const axiosConfig = {
+    baseURL: config.url.api,
+    timeout: config.requestTimeout,
+    headers
+};
 
-const axiosInstance = axios.create({
-    baseURL: baseUrl,
-    timeout: 5000,
-    headers: {
-        Authorization: localStorage.getItem('access_token')
-            ? 'Bearer ' + localStorage.getItem('access_token')
-            : null,
-        'Content-Type': 'application/json',
-        accept: 'application/json',
-    }
-})
+const axiosInstance = axios.create(axiosConfig);

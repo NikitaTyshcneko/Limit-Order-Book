@@ -1,0 +1,15 @@
+@media (max-width: $breakpoint-mobile) {
+    .header {
+        .logo-image {
+            height: 30px;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .header {
+        .logo-image {
+            height: 28px;
+        }
+    }
+}

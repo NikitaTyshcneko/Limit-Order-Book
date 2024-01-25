@@ -1,0 +1,54 @@
+.account-dropdown {
+    &:not(.open) {
+        display: none;
+    }
+
+    position: absolute;
+    background-color: $color-white;
+    top: 100%;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .25);
+
+    &::before {
+        position: absolute;
+        content: "";
+        width: 14px;
+        height: 10px;
+        right: $grid-base * 2.5;
+        top: -3px;
+        transform: rotate(135deg);
+        background-color: $color-white;
+    }
+}
+
+.account-button {
+    color: $color-brand-lightblue;
+    cursor: pointer;
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .account-dropdown {
+        left: 0;
+        right: 0;
+        padding: $grid-base;
+
+        &::before {
+            right: $grid-base * 1.5;
+            top: -2px;
+        }
+    }
+
+    .account-button {
+        font-size: 26px;
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .account-dropdown {
+        right: 0;
+        padding: $grid-base * 1.5 $grid-base * 2;
+    }
+
+    .account-button {
+        font-size: 30px;
+    }
+}

@@ -1,9 +1,11 @@
 version: '3'
 
 services:
-  limit-book-order:
-    container_name: limit-bookOrderContainer
-    build: .
+  limit-order-book:
+    container_name: limit-order-book
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
@@ -12,7 +14,7 @@ services:
     env_file:
       - .env
   db:
-    container_name: db_for_limitBookOrder
+    container_name: db
     restart: always
     image: postgres
     environment:
@@ -25,6 +27,17 @@ services:
       - my-datavolume:/var/lib/postgresql/data
     env_file:
       - .env
+
+  frontend:
+    build:
+      context: ./limit-book-order
+      dockerfile: Dockerfile
+    command: >
+      sh -c "npm run dev"
+    ports:
+      - '8080:8080'
+    depends_on:
+      - limit-order-book
 volumes:
   my-datavolume:
   cache:

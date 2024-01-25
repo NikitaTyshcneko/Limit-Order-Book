@@ -1,9 +1,11 @@
 @import "variables";
 @import "mixins";
-@import "header";
-@import "content";
-@import "footer";
-@import "login";
-@import "logout";
-@import "stock";
 @import "reset";
+@import "font";
+@import "application";
+@import "components/header/header";
+@import "components/content";
+@import "components/footer";
+@import "components/stocks";
+@import "components/orders/orders";
+@import "components/transactions";

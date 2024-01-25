@@ -1,0 +1,32 @@
+.stocks {
+    @extend .data-list;
+
+    .stock {
+        @extend .data-list-item;
+    }
+
+    .price {
+        text-align: right;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+        .stocks{
+            .stock {
+                grid-template-columns: 1fr 4fr 3fr 2fr;
+            }
+        }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .stocks {
+        .stock {
+            grid-template-columns: 1fr 6fr 4fr 1fr;
+        }
+
+        .stock_name,
+        .stock_short_name {
+            padding-left: 20%;
+        }
+    }
+}

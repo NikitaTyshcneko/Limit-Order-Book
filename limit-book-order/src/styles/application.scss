@@ -1,11 +1,102 @@
 html,
 body,
-#root{
-  height: 100%;
+.root {
+    height: 100%;
 }
 
-#root{
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
+body {
+    color: $color-black;
+    background-color: $color-dark-white;
+    font: #{$font-size-base} / 1.2 $font-family-base;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.data-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: calc($grid-base / 2);
+}
+
+.data-list-item {
+    display: grid;
+    column-gap: $grid-base;
+    grid-auto-flow: column;
+    background-color: $color-white;
+    padding: $grid-base;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+    white-space: nowrap;
+
+    > * {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &.titles {
+        font-weight: 600;
+        box-shadow: none;
+        background: none;
+        padding-top: calc($grid-base / 2);
+        padding-bottom: calc($grid-base / 2);
+        text-transform: capitalize;
+        color: $color-brand-darkblue;
+    }
+}
+
+.site-input {
+    background-color: $color-white;
+    border: 1px solid $color-brand-darkblue;
+    height: $grid-base * 2 + 4px;
+    box-sizing: border-box;
+    padding: 0 $grid-base;
+}
+
+.site-radio {
+    width: $grid-base;
+    height: $grid-base;
+}
+
+.site-button {
+    cursor: pointer;
+    height: $grid-base * 2;
+    background-color: $color-brand-darkblue;
+    color: $color-white;
+}
+
+.page-title {
+    font-weight: 500;
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .data-list {
+        font-size: $font-size-middle;
+    }
+    
+    .data-list-item {
+        padding: calc($grid-base / 2) $grid-base;
+
+        &.titles {
+            font-size: 10px;
+        }
+    }
+
+    .page-title {
+        font-size: 24px;
+        margin-bottom: $grid-base;
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .data-list-item {
+        padding: $grid-base;
+    }
+
+    .page-title {
+        font-size: 30px;
+        margin-bottom: $grid-base * 1.5;
+    }
 }

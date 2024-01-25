@@ -1,15 +1,12 @@
-import {Login} from "./Login/Login.jsx";
+import { Logo } from './Logo.jsx'
+import { Account } from './Account/Account.jsx';
 
 export function Header() {
     return (
         <div className="header-wrapper">
             <div className="header">
-                <div className='header-logo'>
-                    <span className={'header-logo-text'}>Limit Book Order</span>
-                </div>
-                <div className={"header-login"}>
-                    <Login/>
-                </div>
+                <Logo />
+                <Account />
             </div>
         </div>
     )
