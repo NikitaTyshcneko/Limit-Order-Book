@@ -16,7 +16,7 @@ export function UserMenu() {
         [config.links.orders]: 'Orders',
         [config.links.transactions]: 'Transactions'
     };
-    const renderer = ([path, label]) => <a class="user-link" href={path} key={path}>{label}</a>;
+    const renderer = ([path, label]) => <a className="user-link" href={path} key={path}>{label}</a>;
     const menuItems = Object.entries(links).map(renderer);
 
     return (

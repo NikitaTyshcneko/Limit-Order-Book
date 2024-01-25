@@ -16,9 +16,12 @@ function Transactions() {
     useEffect(fetchTransactions, []);
 
     return (
-        <div className='transactions'>
-            {transactions}
-        </div>
+        <>
+            <div className="page-title">Transactions</div>
+            <div className='transactions'>
+                {transactions}
+            </div>
+        </>
     );
 
     function fetchTransactions() {

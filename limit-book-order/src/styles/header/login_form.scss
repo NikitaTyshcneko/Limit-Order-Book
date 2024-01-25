@@ -6,18 +6,11 @@
     color: $color-black;
 
     .input {
-        background-color: $color-white;
-        border: 1px solid $color-brand-darkblue;
-        height: $grid-base * 2 + 4px;
-        box-sizing: border-box;
-        padding: 0 $grid-base;
+        @extend .site-input;
     }
 
     .button {
-        cursor: pointer;
-        height: $grid-base * 2;
-        background-color: $color-brand-darkblue;
-        color: $color-white;
+        @extend .site-button;
     }
 
     .error-message {

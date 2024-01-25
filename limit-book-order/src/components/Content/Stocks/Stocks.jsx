@@ -14,9 +14,12 @@ export function Stocks() {
     useEffect(fetchStocks, []);
 
     return (
-        <div className="stocks">
-            {stocks}
-        </div>
+        <>
+            <div className="page-title">Stocks</div>
+            <div className="stocks">
+                {stocks}
+            </div>
+        </>
     );
 
     function fetchStocks() {

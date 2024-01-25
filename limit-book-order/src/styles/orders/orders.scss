@@ -12,6 +12,19 @@
     .create_at {
         text-align: right;
     }
+
+    .create-order-button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: $color-white;
+        background-color: $color-brand-darkblue;
+        font-size: 18px;
+        line-height: 30px;
+        text-align: center;
+        margin: -30px 0 calc($grid-base / 2) auto;
+        cursor: pointer;
+    }
 }
 
 @media (max-width: $breakpoint-mobile) {

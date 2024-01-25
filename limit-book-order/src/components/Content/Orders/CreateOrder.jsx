@@ -4,25 +4,26 @@ import * as config from '../../../helpers/config.js';
 
 export { CreateOrder };
 
-function CreateOrder() {
+function CreateOrder({ opener }) {
     const dispatch = useLimitOrderBookDispatch();
     const orderTypes = ['buy', 'sell'];
     const orderTypeButtons = orderTypes.map(type => (
-        <div className="order-type-button" key={type}>
-            <input name="order_type" type="radio" value={type} id={`order-type-${type}`} required />
+        <div className={`order-type-radio ${type}`} key={type}>
+            <input name="order_type" type="radio" value={type} id={`order-type-${type}`} className="radio" required />
             <label htmlFor={`order-type-${type}`}>{type}</label>
         </div>
     ));
+    const closeModal = () => opener(false);
 
     return (
-        <div className="create-order">
-            <div className="title">Create Order</div>
+        <div className={`create-order`}>
             <form className="form" onSubmit={handleSubmit}>
-                <input name="stock" type="text" placeholder="Stock Id" className="stock-id" required />
-                <input name="price" type="text" placeholder="Price" className="price" required />
-                <input name="quantity" type="number" placeholder="Qty" className="quantity" required />
+                <input name="stock" type="text" placeholder="Stock Id" className="input stock" required />
+                <input name="price" type="text" placeholder="Price" className="input price" required />
+                <input name="quantity" type="number" placeholder="Qty" className="input quantity" required />
                 {orderTypeButtons}
                 <button className="submit">Create</button>
+                <div className="close fas fa-times" onClick={closeModal}></div>
             </form>
         </div>
     );

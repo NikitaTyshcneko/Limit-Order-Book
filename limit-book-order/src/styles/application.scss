@@ -31,14 +31,48 @@ body {
     box-shadow: 0 0 3px rgba(0, 0, 0, .15);
 }
 
+.site-input {
+    background-color: $color-white;
+    border: 1px solid $color-brand-darkblue;
+    height: $grid-base * 2 + 4px;
+    box-sizing: border-box;
+    padding: 0 $grid-base;
+}
+
+.site-radio {
+    width: $grid-base;
+    height: $grid-base;
+}
+
+.site-button {
+    cursor: pointer;
+    height: $grid-base * 2;
+    background-color: $color-brand-darkblue;
+    color: $color-white;
+}
+
+.page-title {
+    font-weight: 500;
+}
+
 @media (max-width: $breakpoint-mobile) {
     .data-list-item {
         padding: calc($grid-base / 2) $grid-base;
+    }
+
+    .page-title {
+        font-size: 24px;
+        margin-bottom: $grid-base;
     }
 }
 
 @media (min-width: $breakpoint-desktop) {
     .data-list-item {
         padding: $grid-base;
+    }
+
+    .page-title {
+        font-size: 30px;
+        margin-bottom: $grid-base * 1.5;
     }
 }
