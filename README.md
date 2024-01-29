@@ -5,7 +5,7 @@ This Django-based web application simulates a stock market limit order book. Use
 
 **Copy code**
 ```
-git clone https://github.com/yourusername/limit-order-book.git
+git clone https://github.com/NikitaTyshcneko/Limit-Order-Book.git
 cd limit-order-book
 ```
 
